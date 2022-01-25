@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Spring Boot Thymeleaf Application - Bootstrap DataTable</title>
+
+    <link th:rel="stylesheet" th:href="@{assets/datatable/datatables.css}"/>
+    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+
+</head>
+<body>
+
+
+
+
+<div class="container">
+
+<div class = "title" >
+<h1>Datatables</h1> 
+</div>
+    <div class="row">
+        <div class="col-sm-12">
+            <table id="tabela" class="display table nowrap" style="width:100%; margin-top:100px">
+                <thead>
+                <tr>
+                	<th>Id</th>
+                    <th>Nome</th>
+                    <th>Local</th>
+                   
+                </tr>
+                </thead>
+                
+            </table>
+        </div>
+    </div>
+
+
+ 
+</div>
+
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{assets/datatable/datatables.js}"></script>
+
+<script>
+
+$(document).ready(function () {
+	$('#tabela').DataTable( {
+		processing: true,
+		serverSide: true,
+		responsive: true,
+		lengthMenu: [10, 15, 20, 25],
+		ajax: {
+			url: "/employees",
+			data: "data"
+		},
+		columns: [
+			{data: 'id'},
+			{data: 'nome'},
+			{data: 'local'}		
+	
+		]
+		
+	} );
+	
+})
+   
+
+</script>
+
+</body>
+</html>
